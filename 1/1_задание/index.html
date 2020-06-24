@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	 <link rel="stylesheet" href="bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+			<header class="mb-3 shadow-sm bg-white"	>
+				  <div class="container d-flex justify-content-between">
+					<h1 header-h1 p-3>{{sitename}}</h1>
+				</div>
+				
+			</header>
+
+			<main>
+				 <div class="container" >
+                    <div class="row">
+                    	 <div class="col-lg-6 mt-5">
+							<figure>
+								<img  :src="product.url">
+							</figure>
+						</div>
+						<div class="col-lg-6 mt-5">
+							<h1 class="text-info" v-text="product.title"></h1>
+							<p><strong>Код:</strong> {{product.id}}</p>
+							<p><strong>Модель:</strong> {{product.model}}</p>
+							<p><strong>Цвет:</strong> {{product.color}}</p>
+							<p><strong>Стоимость:</strong> {{product.price | formatPrice}}</p>
+						</div>
+					</div>
+				</div>
+				
+			</main>
+		</div>
+		<script src="script.js"></script>
+	
+</body>
+</html>

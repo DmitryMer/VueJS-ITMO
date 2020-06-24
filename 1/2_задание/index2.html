@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>123</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+			<header>
+				<h1>{{sitename}}</h1>
+			</header>
+			<main>
+				<div>
+					<figure>
+						<img :src="comment.url">
+					</figure>
+				</div>
+				<h3 v-text="comment.title"></h3>
+				<p>Имя: {{comment.name}}</p>
+				<p>Фамилия: {{comment.surname}}</p>
+				<p>Эл.почта: {{comment.email}}</p>
+				<p>Была на сайте: {{comment.time}}</p>
+				<p>Возраст: {{comment.age | ages}}</p>
+			</main>
+		</div>
+	<script src="script2.js"></script>
+</body>
+</html>
