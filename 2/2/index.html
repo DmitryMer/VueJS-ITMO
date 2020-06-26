@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Меню навигации</title>
+</head>
+<body>
+
+<div id="app">
+  <div class="container">
+    <h2>Меню навигации</h2>
+
+   <div id="tabs" class="container">
+  
+    <ul class="tabs">
+        <a v-on:click="activetab=1" v-bind:class="[ activetab === 1 ? 'active' : '' ]">Главная</a>
+        <a v-on:click="activetab=2" v-bind:class="[ activetab === 2 ? 'active' : '' ]">Проекты</a>
+        <a v-on:click="activetab=3" v-bind:class="[ activetab === 3 ? 'active' : '' ]">Услуги</a>
+        <a v-on:click="activetab=4" v-bind:class="[ activetab === 4 ? 'active' : '' ]">Контакты</a>
+    </ul>
+
+    <div class="content">
+        <div v-if="activetab === 1" class="tabcontent">
+            <p>Главная страница</p>
+        </div>
+        <div v-if="activetab === 2" class="tabcontent">
+           <p>Страница проектов</p>
+        </div>
+        <div v-if="activetab === 3" class="tabcontent">
+           <p>Информация об услугах</p>
+        </div>
+        <div v-if="activetab === 4" class="tabcontent">
+           <p>Информация о контактах</p>
+        </div>
+    </div>
+  
+</div>
+
+	
+<script>
+	
+new Vue({
+    el: '#tabs',
+    data: { activetab: 1 },
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title></title>
+</head>
+<body>
+
+	<div id="app">
+		
+		<h2>Минимализм в интерьере</h2>
+			<div>
+				<figure>
+					<img :src="image1.url">
+				</figure>
+			</div>
+			
+		<p>Минимализм в дизайне интерьера, вопреки распространенному мнению, — это не когда мало. Минимализм — это когда достаточно. А ещё комфортно, функционально и красиво. Звучит заманчиво, правда? Давайте познакомимся с направлением поближе.</p>
+		
+		<h2>История минимализма в архитектуре и дизайне интерьера</h2>
+
+		<div v-show="visible">
+			<div>
+				<figure>
+					<img :src="image2.url">
+				</figure>
+			</div>
+
+			<p>Минимализм как течение окончательно сформировался во второй половине XX века. Он пришёл на смену излишне декоративному стилю модерн, который после Второй мировой войны вызывал негативные ассоциации с буржуазным обществом. Изменились также темп и стиль жизни — люди устремились к простоте и надежности</p>
+		</div>
+		<button v-on:click="visible=!visible">
+			{{visible?'Скрыть':'Узнать больше'}}
+		</button>
+	</div>
+<script>
+	let app = new Vue({
+		el: '#app',
+		data: {
+			visible: false,
+			image1: {
+				url: 'https://www.pufikhomes.com/wp-content/uploads/2018/07/2b3252892c4d9d010a0c4f2ac2bd3a8c_hd.jpg',
+			},
+			image2: {
+				url: 'https://legko.com/disk/2/blogHQ/7d/7deef231e837c818a60c64d962595f5c.jpg',
+			}
+		}
+	});
+
+</script>
+</body>
+</html>
