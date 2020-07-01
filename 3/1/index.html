@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Статьи о рок-музыке</title>
+     <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+ <div id="app">
+   <section class="text-contant">
+        <h1 class="text-center">Поиск статьи:</h1><br>
+            <div style="text-align: center;">
+                <form class="form-search">
+                    <input type="text" v-model="inputText"  placeholder="Введите название.." class="input-large text-center"><br><br>
+                </form>
+
+                 <main class="news-content">
+
+                <div v-for="article in searchArticles">
+                    <div class="news__item">
+                        <h4><a v-bind:href="article.url" target="_blank">{{article.title}}</a></h4>
+                        <div>
+                            <a v-bind:href="article.url" target="_blank"><img v-bind:src="article.img" style="width: 250px; height: 250px;"></a><br><br>
+                        </div>  
+                    </div>
+                </div>
+
+            </main>
+            </div>
+    </section>
+</div>
+<script>
+    let app = new Vue({
+    el:'#app',
+    data:{
+        articles: [{
+            title: '15 лучших хэви-метал-групп всех времен и народов',
+            url: 'https://rockcrysoul.ucoz.ru/load/15_luchshikh_khehvi_metal_grupp_vsekh_vremen_i_narodov/2-1-0-86',
+            img: 'https://rockcrysoul.ucoz.ru/_ld/0/69325302.jpg',
+        }, {
+            title: 'Топ-10 продаваемых пластинок в истории звукозаписи',
+            url: 'https://rockcrysoul.ucoz.ru/load/top_10_prodavaemykh_plastinok_v_istorii_zvukozapisi/2-1-0-85',
+            img: 'https://rockcrysoul.ucoz.ru/_ld/0/88291939.jpg'
+        }, {
+            title: '10 лучших песен группы Placebo',
+            url: 'https://rockcrysoul.ucoz.ru/load/10_luchshikh_pesen_gruppy_placebo/2-1-0-84',
+            img: 'https://rockcrysoul.ucoz.ru/_ld/0/44139061.jpg'
+        }, {
+            title: 'Топ-100 лучших метал-групп',
+            url: 'https://rockcrysoul.ucoz.ru/load/top_100_luchshikh_metal_grupp/2-1-0-81',
+            img: 'https://rockcrysoul.ucoz.ru/_ld/0/55361424.jpg'
+        }, {
+            title: 'Самые крупные рок-фестивали',
+            url: 'https://rockcrysoul.ucoz.ru/load/samye_krupnye_rok_festivali/2-1-0-79',
+            img: 'https://rockcrysoul.ucoz.ru/_ld/0/27489647.jpg'
+        }, {
+            title: 'Лучшие гранж-альбомы всех времен',
+            url: 'https://rockcrysoul.ucoz.ru/load/luchshie_granzh_albomy_vsekh_vremen/2-1-0-78',
+            img: 'https://rockcrysoul.ucoz.ru/_ld/0/00553378.jpg'
+        }, {
+            title: '25 удивительных фактов о рок-музыкантах',
+            url: 'https://rockcrysoul.ucoz.ru/load/25_udivitelnykh_faktov_o_rok_muzykantakh/2-1-0-73',
+            img: 'https://rockcrysoul.ucoz.ru/_ld/0/67411510.jpg'
+        }
+    ],
+
+    inputText: '',
+        
+    },
+
+    computed: {
+        searchArticles: function() {
+            let result = [];
+            let reg = RegExp(this.inputText, 'i');
+
+            this.articles.forEach(function(elem) {
+            	if(reg.test(elem.title)) {
+            		result.push(elem);
+            	}
+            });
+            return result;
+        }
+    }
+});
+
+</script>
+</body>
+</html>

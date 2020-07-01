@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta charset="utf-8"></meta>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+    <div id="app">
+        <div v-if="changeInput">
+            <input v-model="textContent" v-on:keyup.escape="submit" v-on:keyup.enter="changeInput = false">
+            <p>Нажмите на Enter</p>
+        </div>
+        <p v-else v-on:click="changeInput = true">{{textContent}}</p>
+    </div>
+<script>
+    
+let app = new Vue({
+  el: "#app",
+  data: {
+    textContent: 'Измени моё содержимое',
+    changeInput: false,
+  },
+    methods: {
+        submit(){
+            textContent: '';
+    },
+  }
+})
+</script>
+</body>
+</html>
