@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Статьи о рок-музыке</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+
+    	.thisImg {
+    		width: 200px;
+    		height: 200px;
+    	}
+    	.active {
+    		width: 350px;
+    		height: 350px;
+    	}
+
+        .text-contant {
+            text-align: center;
+        }
+    	
+    </style>
+</head>
+<body>
+ <div id="app">
+   <section class="text-contant">
+        <h1 class="text-center">Выбранные статьи:</h1><br>
+            <div>
+                <main class="news-content">
+                	<button class="btn btn-info" v-on:click="visible=!visible" :click="isActive=!isActive">Переключить отображение</button><br><br>
+
+                	<div v-for="article in searchArticles">
+                    	<div class="news__item">
+                        	<h4><a v-bind:href="article.url" target="_blank">{{article.title}}</a></h4>
+                        	<div>
+                            	<a v-bind:href="article.url" target="_blank"><img class="thisImg" v-bind:src="article.img" :class="{active: isActive}"></a><br><br>
+                            	<p v-if="visible">{{article.descript}}</p>
+                       		</div>  
+                    	</div>
+                	</div>
+
+            	</main>
+            </div>
+    </section>
+</div>
+<script>
+    let app = new Vue({
+    el:'#app',
+    data: {
+    	visible: false,
+    	isActive: false,
+    	
+        articles: [{
+            title: '15 лучших хэви-метал-групп всех времен и народов',
+            url: 'https://rockcrysoul.ucoz.ru/load/15_luchshikh_khehvi_metal_grupp_vsekh_vremen_i_narodov/2-1-0-86',
+            img: 'https://rockcrysoul.ucoz.ru/_ld/0/69325302.jpg',
+            descript: 'Рокеры-металлисты - отличные ребята! Поклонникам тяжелой музыки они дарят возможность покричать и потрясти головами - словом, в любом возрасте ощутить себя подростками. А всех остальных они неизменно радуют красочным шоу, появляясь на сцене то с песьими головами, то в скафандрах инопланетян.'
+        }, {
+            title: 'Топ-10 продаваемых пластинок в истории звукозаписи',
+            url: 'https://rockcrysoul.ucoz.ru/load/top_10_prodavaemykh_plastinok_v_istorii_zvukozapisi/2-1-0-85',
+            img: 'https://rockcrysoul.ucoz.ru/_ld/0/88291939.jpg',
+            descript: 'Уже за первую неделю после релиза было продано около миллиона копий пластинки. «Thriller» включен в список «500 величайших альбомов всех времен по версии журнала Rolling Stone». Этот винил сломал определенные барьеры: песня «Beat It» попала в ротацию на «белые радиостанции» благодаря соло, которое записал для пластинки Эдди Ван Хален.'
+        }, {
+            title: '10 лучших песен группы Placebo',
+            url: 'https://rockcrysoul.ucoz.ru/load/10_luchshikh_pesen_gruppy_placebo/2-1-0-84',
+            img: 'https://rockcrysoul.ucoz.ru/_ld/0/44139061.jpg',
+            descript: 'Изменения являются неотъемлемой составляющей этого мира. Британская группа Placebo не стала исключением.Почти за 20 лет своего существования коллектив потерпел ряд различных изменений: новые барабанщики, разнообразие стрижек фронтмена Брайана Молко, движение от песчаного гранжа к стадионному року и многое другое.'
+        }, {
+            title: 'Топ-100 лучших метал-групп',
+            url: 'https://rockcrysoul.ucoz.ru/load/top_100_luchshikh_metal_grupp/2-1-0-81',
+            img: 'https://rockcrysoul.ucoz.ru/_ld/0/55361424.jpg',
+            descript: 'Журнал Metal Sword опубликовал рейтинг 100 лучших музыкальных коллективов, исполняющих музыку в жанре Heavy Metal. В своём предисловии к публикации редакция журнала резко раскритиковала все предыдущие рейтинги на подобную тему, назвав их сугубо субъективными, и тем самым противопоставив им свой, более чем объективный порядковый показатель, отображающий значимость и популярность определённого исполнителя. '
+        }, {
+            title: 'Самые крупные рок-фестивали',
+            url: 'https://rockcrysoul.ucoz.ru/load/samye_krupnye_rok_festivali/2-1-0-79',
+            img: 'https://rockcrysoul.ucoz.ru/_ld/0/27489647.jpg',
+            descript: 'Чад угара и кутежа, огромное количество света и громоподобные звуки гитарных запилов - все это говорит вам о том, что вы находитесь на рок-фестивале.  Событие, которое некоторые ждут годами, а когда дожидаются, устраивают праздник жизни, является знаковым для того города или региона где оно проводится, и прежде всего из-за его массовости.'
+        }
+    ],
+
+    inputText: '',
+        
+    },
+
+    computed: {
+        searchArticles: function() {
+            let result = [];
+
+            this.articles.forEach(function(elem) {
+            result.push(elem);
+            });
+            return result;
+        }
+    }
+});
+
+</script>
+</body>
+</html>
