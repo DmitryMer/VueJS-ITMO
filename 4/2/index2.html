@@ -31,7 +31,7 @@
         <h1 class="text-center">Выбранные статьи:</h1><br>
             <div>
                 <main class="news-content">
-                	<button class="btn btn-info" v-on:click="visible=!visible" :click="isActive=!isActive">Переключить отображение</button><br><br>
+                	<button class="btn btn-info" v-on:click="visible=!visible" :click="isActive=!isActive">{{ visible ? 'Скрыть' : 'Показать' }}</button><br><br>
 
                 	<div v-for="article in searchArticles">
                     	<div class="news__item">
