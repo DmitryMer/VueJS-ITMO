@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>Components</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app1">
+        <div>
+            <v-slider is="slider" :slider='items'></v-slider>
+        </div>
+        </div>
+        <script>
+          Vue.component('slider', {
+    props: ['slider'],
+    data: function() {
+        return {
+            changeSlide: 0,
+        };
+    },
+    template: `<div is='changeSlide'>{{ slider[changeSlide] }}</div>`,
+    methods: {
+        slideList: function() {
+            if (this.changeSlide == this.slider.length - 1) {
+                return this.changeSlide = 0;
+            }  this.changeSlide++;
+        },
+    },
+    created: function() {
+        setInterval(this.slideList, 5000);
+    },
+});
+
+
+new Vue({
+    el: '#app1',
+    data: function() {
+        return {
+            items: [
+                `Нет ничего глупее, чем желание быть умнее всех`,
+                `Жизнь – это лишь проявление желаний, и никто не бывает ею удовлетворен`,
+                `Если не знаешь чего хочешь, умрешь в куче того, чего не хотел`,
+                `Псих и гений – это две крайности одной сущности`,
+            ],
+        };
+    },
+});
+        </script>
+    </body>
+</html>

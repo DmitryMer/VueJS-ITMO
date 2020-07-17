@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+  margin: 0 0 20px 0;
+  padding: 0;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  text-decoration: none;
+}
+
+ul li a {
+    display: inline;
+}
+
+button {
+   margin: 0 10px 0 10px;
+}
+
+button a {
+    padding: 20px;
+}
+
+.menu {
+    display: inline-block;
+}
