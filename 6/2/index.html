@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Маршрутизация Vue.js</title>
+<meta charset="utf-8" />
+<style>
+  * {
+    text-align: center;
+  }
+ul {
+    list-style-type: none;padding: 0;
+  }
+li{
+  display: inline-block;
+}
+a{
+  padding: 5px;
+}
+a.router-link-active, li.router-link-active>a {
+  color: red;
+}
+</style>
+</head>
+<body>
+<div id="app">
+    <ul>
+      <li><router-link to="/" exact>Главная</router-link></li>
+      <li><router-link to="/products">Товары</router-link></li>
+    </ul>
+    <router-view></router-view>
+</div>
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script>
+const NotFound = { template: '<h1>Страница не найдена</h1>' }
+const Home = { template: '<h1>Главная</h1>' }
+ 
+const Phones = { template: '<div><h2>Xiaomi</h2><img src="https://img.mvideo.ru/Pdb/30043639b.jpg" width="200px" height="200px"><p>Цена: 10000 р.</p></div>' }
+const Tablets = { template: '<div><h2>Lenovo</h2><img src="https://img.mvideo.ru/Pdb/30019921b.jpg"  width="200px" height="200px"><p>Цена: 15000 р.</p></div><h2>Планшеты</h2>' }
+const Notebooks = { template: '<div><h2>Hewlett Packard</h2><img src="https://img.mvideo.ru/Pdb/30046952b.jpg" width="200px" height="200px"><p>Цена: 25000р.</p></div><h2>Ноутбуки</h2>' }
+const Index = { template: `<div>
+                              <h3>Выберите категорию</h3>
+                              <div><router-link to="/products/phones">Смартфоны</router-link></div>
+                              <div><router-link to="/products/tablets">Планшеты</router-link></div>
+                              <div><router-link to="/products/notebooks">Ноутбуки</router-link></div>
+                            </div>` }
+const Products = { template: '<div><h1>Товары</h1><router-view></router-view></div>' }
+
+const routes = [
+  { path: '/', component: Home },
+  { 
+    path: '/products', 
+    component: Products,
+    children: [
+      {
+        path: 'phones',
+        component: Phones,
+      },
+      {
+        path: 'tablets',
+        component: Tablets
+      },
+       {
+        path: 'notebooks',
+        component: Notebooks
+      },
+      {
+        path: '',
+        component: Index
+      }]
+    },
+    { path: '*', component: NotFound }
+];
+ 
+const router = new VueRouter({
+    mode: 'history',
+    routes: routes
+});
+new Vue({
+  el: '#app',
+  router: router
+})
+</script>
+</body>
+</html>
