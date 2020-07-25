@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Картинная галерея</title>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+
+* {
+  text-align: center;
+}
+
+h3 {
+  color: #333;
+}
+
+.content {
+position: relative;
+}
+
+.close {
+position: absolute;
+right: 20%;
+top: 50px;
+width: 32px;
+height: 32px;
+opacity: 1;
+cursor: pointer;
+}
+
+.close:hover {
+opacity: .5;
+}
+
+.close:before, .close:after {
+position: absolute;
+left: 15px;
+content: ' ';
+height: 33px;
+width: 2px;
+background-color: #000;
+}
+
+.close:before {
+transform: rotate(45deg);
+}
+.close:after {
+transform: rotate(-45deg);
+}
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1>Картинная галерея</h1>
+    <gallery :addfn="add"></gallery>
+    <div>
+        <pictureitem v-for="(picture, index) in pictures"
+                    :picture="picture"
+                    :key="index"
+                    :index="index"
+                    :removefn="remove">
+        </pictureitem>
+    </div>
+</div>
+<script>
+  Vue.component('gallery', {
+    props: ["addfn"],
+    data: function () {
+      return {
+        picture: {name:'', title: '', url:''}
+      }
+    },
+    template: `<div>
+            <input type="text" v-model="picture.name" placeholder="Автор"/>
+            <input type="title" v-model="picture.title" placeholder="Название"/>
+            <input type="text" v-model="picture.url" placeholder="Адрес изображения"/>
+            <button v-on:click="addfn({name: picture.name, title: picture.title, url: picture.url})">Добавить</button>
+          </div>`
+  });
+  Vue.component('pictureitem', {
+    props: ["picture", "index", "removefn"],
+    template: `<div class="content">
+            <h2>Автор: {{picture.name}}</h2>
+            <img :src='picture.url' width="800px" height="500px">
+            <br>
+            <span class="close" v-on:click="removefn(index)"></span>
+            <h3>Название: <em>{{picture.title}}</em></h3>
+          </div>`
+  });
+  new Vue({
+    el: "#app",
+    data: {
+      pictures:[
+        {name: 'Васнецов', title: 'Богатыри', url: 'https://sr.gallerix.ru/_EX/2037947957/161578369.jpg'},
+        {name: 'Шишкин', title: 'Утро в сосновом лесу', url: 'https://sr.gallerix.ru/_EX/2037947957/608117675.jpg'},
+        {name: 'Васнецов', title: 'Над вечным покоем', url: 'https://sr.gallerix.ru/_EX/2037947957/979483032.jpg'}
+      ]
+    },
+    methods:{
+      remove: function(index){
+        this.pictures.splice(index, 1);
+      },
+      add: function(picture){
+        this.pictures.push(picture);
+      }
+    }
+  });
+</script>
+</body>
+</html>
